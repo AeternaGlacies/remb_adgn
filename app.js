@@ -40,7 +40,8 @@ function addAttachment(){
  const input=document.createElement('input');input.type='file';input.accept='image/jpeg,image/png,image/webp,application/pdf';input.name='facture_'+attachmentCount;input.setAttribute('aria-label','Facture '+attachmentCount);input.addEventListener('change',checkFiles);
  const btn=document.createElement('button');btn.type='button';btn.textContent='Retirer';btn.addEventListener('click',()=>{box.remove();checkFiles();});box.append(input,btn);$('attachments').append(box);
 }
-function checkFiles(){const files=[...document.querySelectorAll('.attachment input')].flatMap(e=>[...e.files]);const size=files.reduce((s,f)=>s+f.size,0);const limit=10*1024*1024;$('sizeMessage').textContent=`${files.length} fichier(s) — ${(size/1024/1024).toFixed(2)} Mo sur 10 Mo`; $('sizeMessage').style.color=size>limit?'#af182f':'';return size<=limit;}
+function selectedFiles(){return [...document.querySelectorAll('.attachment input')].flatMap(input=>[...input.files]);}
+function checkFiles(){const files=selectedFiles();const size=files.reduce((s,f)=>s+f.size,0);const limit=10*1024*1024;$('sizeMessage').textContent=`${files.length} fichier(s) joint(s) — ${(size/1024/1024).toFixed(2)} Mo sur 10 Mo`; $('sizeMessage').style.color=size>limit?'#a02e29':'';return size<=limit;}
 $('addExpense').addEventListener('click',addExpense);
 $('addAttachment').addEventListener('click',addAttachment);
 $('method').addEventListener('change',()=>{$('paymentContact').required=$('method').value==='Virement Interac';});
@@ -60,7 +61,10 @@ $('claimForm').addEventListener('submit',ev=>{
  function hidden(name,value){const i=document.createElement('input');i.type='hidden';i.className='generated';i.name=name;i.value=value;form.append(i);}
  rows.forEach((r,i)=>hidden(`Dépense ${i+1}`,`${r.item} | ${r.store} | ${r.date} | ${money.format(r.amount)}`));
  hidden('Total demandé',money.format(recalculate()));
- hidden('Nombre de factures',[...document.querySelectorAll('.attachment input')].filter(i=>i.files.length).length);
+ hidden('Nombre de dépenses',rows.length);
+ const files=selectedFiles();
+ hidden('Nombre de factures jointes',files.length);
+ files.forEach((file,i)=>hidden(`Pièce justificative ${i+1}`,file.name));
  $('emailSubject').value=`ADGN - Remboursement - ${$('activity').value} - ${$('person').value}`;
  form.action='https://formsubmit.co/'+encodeURIComponent(email);
  // Actual delivery is handled by FormSubmit; no success is claimed before submitting.

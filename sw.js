@@ -1,6 +1,6 @@
 // La mise en cache concerne seulement l’interface publique, jamais les factures ou demandes.
-const CACHE_NAME = 'adgn-remboursements-pwa-mobile-v2';
-const APP_FILES = ['./', './index.html', './style.css', './app.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png'];
+const CACHE_NAME = 'adgn-remboursements-pwa-epee-v4';
+const APP_FILES = ['./', './index.html', './style.css', './app.js', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './assets/adgn-epee.png'];
 self.addEventListener('install', e => {
  e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_FILES)).then(() => self.skipWaiting()));
 });
