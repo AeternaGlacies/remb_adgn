@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#811c29"><title>ADGN | Demande de remboursement</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="ADGN Remboursements">
+<meta name="description" content="Formulaire de remboursement des activités de l’ADGN">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><div class="shell topinner"><div class="brand"><span class="seal">A</span><div><strong>ADGN</strong><small>Portail de remboursements</small></div></div><button type="button" class="outline small" id="settingsToggle">⚙ Configuration</button></div></header>
+<main class="shell">
+<section class="hero"><div class="installbar"><button type="button" id="installButton" class="primary hidden">Installer l’application</button><span id="installHint" class="muted">Sur iPhone : Safari → Partager → Sur l’écran d’accueil. Sur Android : menu du navigateur → Installer l’application.</span></div><p class="eyebrow">ASSOCIATION DE DIVERTISSEMENT EN GRANDEUR NATURE</p><h1>Demande de remboursement</h1><p>Décrivez vos achats et joignez vos factures. Votre demande sera transmise à la personne responsable.</p></section>
+<section class="panel hidden" id="settingsPanel"><h2>Configuration du portail</h2><p class="muted">Les réglages sont sauvegardés uniquement dans ce navigateur. Sur GitHub Pages, ils ne sont pas partagés entre les utilisateurs.</p><div class="two"><label>Courriel de destination<input type="email" id="destination" placeholder="tresorerie@exemple.ca"></label><label>Ajouter une activité<div class="inline"><input id="newActivity" placeholder="Nom de l'activité"><button class="outline" type="button" id="addActivity">Ajouter</button></div></label></div><div id="activitiesSettings" class="chips"></div><button type="button" id="saveSettings" class="primary">Sauvegarder la configuration</button><p class="notice">Pour fixer la même adresse pour tout le monde, modifiez les constantes DEFAULT_EMAIL et DEFAULT_ACTIVITIES dans app.js avant la publication. Ne saisissez jamais de mot de passe dans ce site.</p></section>
+<form id="claimForm" method="POST" enctype="multipart/form-data" novalidate>
+<input type="hidden" name="_subject" id="emailSubject"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="true"><input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off">
+<section class="panel"><div class="step"><span>01</span><h2>Demandeur et activité</h2></div><div class="two"><label>Nom complet <em>*</em><input required id="person" name="Nom du demandeur" autocomplete="name" placeholder="Prénom et nom"></label><label>Courriel du demandeur <em>*</em><input required type="email" id="email" name="email" autocomplete="email" placeholder="nom@exemple.ca"></label><label>Activité ADGN <em>*</em><select id="activity" name="Activité" required></select></label><label>Rôle ou implication (facultatif)<input name="Rôle" placeholder="PNJ, organisateur, bénévole..."></label></div></section>
+<section class="panel"><div class="step"><span>02</span><h2>Raison du remboursement</h2></div><label>Pourquoi ces achats ont-ils été faits ? <em>*</em><textarea required name="Justification" id="reason" rows="3" placeholder="Ex. : matériel pour la décoration de la taverne..."></textarea></label></section>
+<section class="panel"><div class="step"><span>03</span><h2>Dépenses et factures</h2></div><p class="muted">Ajoutez une ligne par achat ou facture. Les montants seront additionnés automatiquement.</p><div id="expenses"></div><button type="button" class="outline" id="addExpense">+ Ajouter une dépense</button><div class="total"><span>Total demandé</span><strong id="total">0,00 $ CA</strong></div></section>
+<section class="panel"><div class="step"><span>04</span><h2>Preuves d'achat</h2></div><p class="muted">Photos JPG/PNG/WEBP ou documents PDF. Maximum 10 Mo au total. Les pièces jointes seront envoyées au service de transmission de courriels.</p><div id="attachments"></div><button type="button" class="outline" id="addAttachment">+ Ajouter une facture</button><p id="sizeMessage" class="muted"></p></section>
+<section class="panel"><div class="step"><span>05</span><h2>Comment vous rembourser ?</h2></div><div class="two"><label>Méthode <em>*</em><select name="Méthode de remboursement" id="method" required><option value="">Choisir...</option><option>Virement Interac</option><option>Virement bancaire (coordonnées transmises séparément)</option><option>Comptant</option><option>Autre (préciser)</option></select></label><label>Courriel ou numéro pour Interac<input name="Coordonnées de remboursement" id="paymentContact" placeholder="Courriel ou téléphone"></label></div><label>Précisions additionnelles<textarea rows="2" name="Notes de remboursement" placeholder="Informations utiles pour la trésorerie..."></textarea></label><p class="notice">Pour votre sécurité, n'inscrivez pas ici de numéro de compte bancaire complet ni de mot de passe.</p></section>
+<section class="panel submitPanel"><label class="check"><input id="confirm" type="checkbox" required><span>Je confirme que les renseignements et montants fournis sont exacts et que les pièces justificatives correspondent à ces dépenses.</span></label><p id="feedback" role="status" aria-live="polite"></p><button class="primary submit" type="submit">Envoyer ma demande →</button><p class="muted fine">Le service d'envoi peut demander une vérification anti-robot. Un envoi réussi ne signifie pas que le remboursement est approuvé.</p></section>
+</form>
+<footer>ADGN · Outil de transmission des demandes de remboursement</footer>
+</main><script src="app.js" defer></script></body></html>
