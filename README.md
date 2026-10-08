@@ -1,10 +1,16 @@
+# 📱 [OUVRIR LE PORTAIL DE REMBOURSEMENT ADGN](https://aeternaglacies.github.io/remb_adgn/)
+
+> Accès direct à l’application (après activation de GitHub Pages).
+
+---
+
 # ADGN — Portail de demandes de remboursement
 
 Application statique HTML/CSS/JS hébergeable sur GitHub Pages.
 
 ## Déploiement
 1. Déposez **tous les fichiers et le dossier `icons/`** à la racine d'un dépôt GitHub.
-2. Le courriel de destination par défaut est déjà `association.divertissement.gn@gmail.com` dans `app.js`. Modifiez `DEFAULT_EMAIL` seulement si nécessaire, et ajustez `DEFAULT_ACTIVITIES` (par ex. `['Laestrom', 'Autre événement']`).
+2. Ouvrez `app.js` et définissez `DEFAULT_EMAIL` (l'adresse de la trésorerie) ainsi que `DEFAULT_ACTIVITIES` (par ex. `['Laestrom', 'Autre événement']`).
 3. GitHub > Settings > Pages > Deploy from a branch > main / (root) > Save.
 4. Ouvrez l'URL Pages et soumettez **un formulaire d'essai**, avec une fausse facture sans données privées.
 5. Confirmez l'adresse de réception depuis le courriel d'activation de FormSubmit. Vérifiez le message et les pièces jointes avant utilisation réelle.
