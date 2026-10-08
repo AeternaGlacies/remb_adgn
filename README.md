@@ -45,3 +45,6 @@ Le courriel contient le nombre de dépenses, le nombre de fichiers joints et la 
 ## Logo de l'application
 
 L'icône Android et l'en-tête utilisent désormais l'épée officielle ADGN, extraite du logo fourni. Après déploiement sur GitHub Pages, si l'ancienne icône persiste, supprimez l'ancien raccourci et réinstallez l'application.
+
+## Identité visuelle
+Interface administrative noir et blanc avec icônes adaptées pour Android, iPhone et navigateur. Après une mise à jour, supprimer puis réinstaller l’ancien raccourci si l’icône ne change pas.
