@@ -1,50 +1,44 @@
-# 💚 ADGN — Portail de remboursement
+# ADGN — Portail de remboursement
 
-## 📱 [🚀 OUVRIR L’APPLICATION DE REMBOURSEMENT](https://aeternaglacies.github.io/remb_adgn/)
+## [OUVRIR L’APPLICATION](https://aeternaglacies.github.io/remb_adgn/)
 
-**Cliquez sur le lien ci-dessus pour créer une demande de remboursement.**
+Le formulaire envoie à **association.divertissement.gn@gmail.com** par FormSubmit. L'adresse est fixe dans l'interface ; l'application GitHub Pages reste publique et un utilisateur techniquement compétent pourrait contourner les validations côté navigateur. Aucun mot de passe ou secret ne peut être caché dans le JavaScript publié.
 
-Compatible ordinateur, Android et iPhone. L’application peut être installée sur l’écran d’accueil.
+## Référence de remboursement
 
----
+L'objet et le contenu du courriel contiennent un identifiant comme `LAESTROM2026_7F2A4B90E1D3AC`. Le suffixe est produit avec `crypto.getRandomValues()` (56 bits). Le risque de collision est très faible, **mais l'unicité absolue n'est pas garantie sans registre central**. Une nouvelle tentative de la même demande sur la même page utilise la même référence pour faciliter les vérifications.
 
-## Aperçu
+## Sécurité et conservation
 
-Ce portail permet d’envoyer une demande de remboursement à l’ADGN avec :
+- Les images et PDF sont vérifiés sur le navigateur : types autorisés et poids total maximum 10 Mo. Ces contrôles ne remplacent pas une validation serveur.
+- Ne pas transmettre de numéros bancaires complets. Pour Interac, renseigner uniquement un courriel ou un téléphone.
+- FormSubmit reçoit les données et pièces jointes ; vérifier ses conditions de confidentialité et de conservation avant production.
+- Vérifier manuellement chaque remboursement avec le bénévole, puis conserver facture + justificatif de virement dans les archives de l'ADGN.
+- L'ADGN doit protéger l'accès Gmail avec la vérification en deux étapes et limiter l'accès aux archives.
+- Les paramètres locaux conservent seulement la liste d'activités ajoutées, pas les demandes ou factures.
+- Cette application ne certifie pas l'identité de l'expéditeur et ne réalise aucun virement.
 
-- le nom du demandeur ;
-- l’activité concernée (ex. Laestrom) ;
-- la raison de la dépense ;
-- les montants détaillés ;
-- les factures en pièces jointes ;
-- la méthode de remboursement.
+## Installation GitHub Pages
 
-Les demandes sont transmises par courriel à : **association.divertissement.gn@gmail.com**
+Téléverser le **contenu** du ZIP à la racine de `AeternaGlacies/remb_adgn`, en conservant les dossiers `assets/` et `icons/`. Dans Settings > Pages : branche `main`, dossier `/(root)`.
 
-## Mise en ligne GitHub Pages
+```text
+remb_adgn/
+├── README.md
+├── index.html
+├── app.js
+├── style.css
+├── manifest.webmanifest
+├── sw.js
+├── assets/
+│   ├── adgn-epee.png
+│   └── adgn-logo.png
+└── icons/
+    ├── icon-192.png
+    ├── icon-512.png
+    ├── icon-maskable-512.png
+    ├── apple-touch-icon.png
+    └── favicon-32.png
+```
 
-1. Déposer les fichiers à la racine du dépôt.
-2. Dans **Settings > Pages**, choisir la branche `main` et le dossier `/root`.
-3. Sauvegarder.
-4. Le site sera ensuite disponible à l’adresse ci-dessus.
-
-## Technologies
-
-- HTML / CSS / JavaScript
-- PWA (installable sur téléphone)
-- FormSubmit pour la transmission courriel
-
-## Note
-
-Lors du premier envoi, FormSubmit peut demander une activation par courriel.
-
-## Vérification des pièces justificatives
-
-Le courriel contient le nombre de dépenses, le nombre de fichiers joints et la liste des noms des fichiers. Un fichier peut contenir plusieurs achats.
-
-## Logo de l'application
-
-L'icône Android et l'en-tête utilisent désormais l'épée officielle ADGN, extraite du logo fourni. Après déploiement sur GitHub Pages, si l'ancienne icône persiste, supprimez l'ancien raccourci et réinstallez l'application.
-
-## Identité visuelle
-Interface administrative noir et blanc avec icônes adaptées pour Android, iPhone et navigateur. Après une mise à jour, supprimer puis réinstaller l’ancien raccourci si l’icône ne change pas.
+Les anciens PNG placés directement à la racine peuvent être retirés **après** confirmation que les ressources sous `icons/` et `assets/` fonctionnent en production.
